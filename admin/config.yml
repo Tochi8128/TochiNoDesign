@@ -1,0 +1,50 @@
+backend:
+  name: github
+  repo: tochi8128/TochiNoDesign
+  branch: main
+
+  # ↓ GitHub Pagesでは必須：外部OAuth（後でCloudflare Workerを置く）
+  base_url: https://tochi-portfolio.toch2718.workers.dev
+  auth_endpoint: /auth
+
+media_folder: "uploads/works"
+public_folder: "/uploads/works"
+
+site_url: "https://tochi8128.github.io/TochiNoDesign"
+
+# 作品mdの置き場所：あなたの実フォルダに合わせて変更
+# 例：content/works に置く運用が一番きれい
+collections:
+  - name: "works"
+    label: "Works"
+    folder: "content/works"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Category", name: "category", widget: "string" }
+      - {
+          label: "Year",
+          name: "year",
+          widget: "number",
+          value_type: "int",
+          min: 2000,
+          max: 2100,
+        }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
+      - {
+          label: "Featured",
+          name: "featured",
+          widget: "boolean",
+          default: false,
+        }
+      - {
+          label: "Featured Order",
+          name: "featuredOrder",
+          widget: "number",
+          value_type: "int",
+          required: false,
+        }
+      - { label: "Body", name: "body", widget: "markdown" }

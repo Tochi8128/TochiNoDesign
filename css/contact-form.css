@@ -1,0 +1,244 @@
+:root {
+  --bg: #f9f1ef;
+  --ink: #5144f1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: transparent; /* ←SVG上に載るので透明にしておく */
+  font-family: "Noto Sans JP", system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+}
+
+.phone-form {
+  height: 100%;
+  padding: 14px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.phone-form__header {
+  padding: 8px 8px 0;
+}
+
+.phone-form__eyebrow {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+.phone-form__title {
+  margin: 4px 0 0;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.phone-form__X {
+  margin: 6px 0 0;
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+#contactForm {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 8px;
+  background: rgba(249, 241, 239, 0.95);
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field__label {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
+}
+
+.edit {
+  display: grid;
+  gap: 25px;
+}
+
+.field__input,
+.field__select,
+.field__textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1.5px solid var(--ink);
+  padding: 5px 10px 5px 5px;
+  font-size: 13px;
+  color: var(--ink);
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+}
+
+.field__textarea {
+  resize: none;
+  border: 1.5px solid var(--ink);
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.submit {
+  margin-top: 2px;
+  height: 40px;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background: rgba(249, 241, 239, 0.7);
+}
+
+.note {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.4;
+  opacity: 0.75;
+}
+
+.actions{
+  display: grid;
+  gap: 8px;
+}
+
+.ghost{
+  height: 40px;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  display: none; /* 編集モードでは隠す */
+}
+
+.confirm{
+  display: none;
+  padding: 10px;
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  background: rgba(249, 241, 239, 0.95);
+}
+
+.confirm__title{
+  margin: 0 0 10px;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+.confirm__list{
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.confirm__list dt{
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.confirm__list dd{
+  margin: 2px 0 0;
+  font-size: 13px;
+  word-break: break-word;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(81, 68, 241, 0.25);
+}
+
+.confirm__note{
+  margin: 10px 0 0;
+  font-size: 11px;
+  opacity: 0.75;
+}
+
+/* 確認モード（bodyにクラスが付く想定） */
+body.is-confirm .confirm{ display: block; }
+body.is-confirm #confirmBtn { display: none; }
+body.is-confirm #backToEditBtn{ display: block; }
+body.is-confirm #sendBtn{ display: block; }
+
+/* 編集モードでは送信ボタンを隠す */
+#sendBtn{ display: none; }
+
+.form-error{
+  margin: 0;
+  padding: 8px 0px;
+  font-size: 10px;
+  line-height: 1.4;
+  display: none;
+  color: #f14444;
+}
+
+.form-error.is-show{
+  display: block;
+}
+
+/* 確認モードでは入力側を非表示、確認側を表示 */
+#confirmPanel{ display: none; }
+body.is-confirm #confirmPanel{  
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+body.is-confirm #editPanel{ display: none; }
+
+#contactForm {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+#confirmList {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+#donePanel { display: none; }
+
+body.is-done #donePanel { display: block; }
+body.is-done #editPanel { display: none; }
+body.is-done #confirmPanel { display: none; }

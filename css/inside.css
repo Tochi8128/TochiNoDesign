@@ -1,0 +1,151 @@
+/* ========================================
+   グローバルスタイル
+   ======================================== */
+* { 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  font-family: "Noto Sans JP", "Hiragino Sans", system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+svg {
+  overflow: visible;
+}
+
+/* ========================================
+   Header
+   ======================================== */
+header.top {
+  width: 100%;
+}
+
+header.top h1.logo {
+  font-size: 30px;
+  font-weight: 500;
+  color: #5144f1;
+  margin: 100px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ========================================
+   Main
+   ======================================== */
+main.main {
+  padding: 0px 50px 100px;
+  width: 100%;
+  display: grid;
+  gap: 80px;
+}
+
+/* ========================================
+   Section
+   ======================================== */
+
+/* --- Pickup Section --- */
+#pickup h2 {
+  font-size: 25px;
+  font-weight: 400;
+  color: #f14444;
+  margin-bottom: 12px;
+}
+
+#pickup #pickupGrid {
+  display: flex;
+  background-color: transparent;
+}
+
+#pickup #pickupGrid .workCard {
+  cursor: pointer;
+  display: flex;
+  border: none;
+  background-color: transparent;
+}
+
+#pickup #pickupGrid .workThumb {
+  width: 60%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+#pickup #pickupGrid .workBody {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding-left: 30px;
+}
+
+#pickup #pickupGrid .workCat {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+#pickup #pickupGrid .workTitle {
+  font-size: 16px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* --- Works Section --- */
+#works h2 {
+  font-size: 25px;
+  font-weight: 400;
+  color: #5144f1;
+  margin-bottom: 12px;
+}
+
+#works #worksGrid.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+  margin-top: 12px;
+}
+
+#works #worksGrid .workCard {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+#works #worksGrid .workCard:focus-visible {
+  outline: 2px solid #5144f1;
+  outline-offset: 2px;
+}
+
+#works #worksGrid .workThumb {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+#works #worksGrid .workBody {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding-top: 10px;
+}
+
+#works #worksGrid .workCat {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+#works #worksGrid .workTitle {
+  font-size: 16px;
+  margin-top: 6px;
+  font-weight: 400;
+}

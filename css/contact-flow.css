@@ -1,0 +1,105 @@
+/* ========================================
+   グローバルスタイル
+   ======================================== */
+* { 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  font-family: "Noto Sans JP", "Hiragino Sans", system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+svg {
+  overflow: visible;
+}
+
+a {
+    text-decoration: none;
+    color: #5144f1;
+}
+
+/* ========================================
+   Header
+   ======================================== */
+header.top {
+  width: 100%;
+}
+
+header.top h1.logo {
+  font-size: 30px;
+  font-weight: 500;
+  color: #5144f1;
+  font-family: Noto Sans JP, sans-serif;
+  margin: 100px 0px;
+  display: flex;
+  justify-content: center;
+  letter-spacing: 0.05em;
+}
+
+.back-btn{
+  position: fixed;
+  top: 20px;
+  left: 30px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 14px;
+  color: #5144f1;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+/* ========================================
+   Main
+   ======================================== */
+main.main {
+  padding: 0px 70px 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 500;
+  font-weight: 500;
+  color: #f14444;
+  margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: 400;
+    color: #5144f1; 
+    margin: 30px 0px 8px;
+}
+
+.menuItem p, .flowItem p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #666666;
+  line-height: 1.6;
+  margin-left: 30px;
+}
+
+.flowList, .menuList {
+    margin-left: 40px;
+}
+
+.menuList .info {
+    color: #999999;
+    font-size: 12px;
+    margin-top: 40px;
+}
