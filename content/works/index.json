@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-04T05:33:07.495Z",
+  "generatedAt": "2026-02-04T05:34:38.187Z",
   "works": [
     {
       "id": "001_vocaloid-kohakulabo2025-HP",
@@ -31,28 +31,6 @@
       "featured": true,
       "featuredOrder": 1,
       "thumbnail": "./uploads/works/003_dualpha/thumb.png",
-      "hero": "",
-      "url": ""
-    },
-    {
-      "id": "test",
-      "title": "test",
-      "category": "test",
-      "year": 2025,
-      "featured": false,
-      "featuredOrder": "",
-      "thumbnail": "/TochiNoDesign/uploads/works/bg_chiheisen_green.jpg",
-      "hero": "",
-      "url": ""
-    },
-    {
-      "id": "test2",
-      "title": "test2",
-      "category": "test2",
-      "year": 2026,
-      "featured": false,
-      "featuredOrder": 9999,
-      "thumbnail": "/TochiNoDesign/uploads/works/1e02601b-c183-4f0c-ae37-5afddcf40178-1_all_3927.jpg",
       "hero": "",
       "url": ""
     }
