@@ -28,10 +28,11 @@ const WORK_IDS = [
   "001_vocaloid-kohakulabo2025-HP",
   "002_vocaloid-kohaku2026-HP",
   "003_dualpha",
+  "test"
 ];
 
 // ===== 設定 =====
-const WORK_MD_BASE = "./content/works/";
+const WORK_MD_BASE = "/TochiNoDesign/content/works/";
 const FETCH_OPTIONS = { cache: "no-store" }; // 更新反映を優先
 
 // ===== DOM =====
