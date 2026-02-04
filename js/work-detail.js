@@ -48,7 +48,7 @@ if (document.readyState === "loading") {
 
 async function openDetail(id) {
   try {
-    const url = `./content/works/${encodeURIComponent(id)}.md`;
+    const url = `${SITE_BASE}/content/works/${encodeURIComponent(id)}.md`;
     const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) {
       console.warn(`[work-detail] md not found: ${url} (status: ${res.status})`);
@@ -61,8 +61,8 @@ async function openDetail(id) {
     // 画像パスをベースパスで補正
     // 例: GitHub Pages の project site が /PORTFOLIO/ でも /portfolio/ でも吸収
     const path = location.pathname;
-    const m = path.match(/^\/([^\/]+)\//); // 先頭のディレクトリ名
-    const SITE_BASE = (m && m[1].toLowerCase() === "portfolio") ? `/${m[1]}` : "";
+    const m = path.match(/^\/([^\/]+)\//);
+    const SITE_BASE = m ? `/${m[1]}` : "";
 
     function withBase(path) {
       if (!path) return "";
@@ -76,7 +76,7 @@ async function openDetail(id) {
     const title = escapeHTML(data.title ?? id);
 
     // Markdown本文をHTMLに変換
-    const htmlBody = await markdownToHtml(body);
+    const htmlBody = await markdownToHtml(body, SITE_BASE);
 
     // DOM要素を取得（関数内で）
     const detailOverlay = document.querySelector(".detailOverlay");
@@ -131,7 +131,7 @@ function closeDetail() {
   document.body.style.overflow = "";
 }
 
-async function markdownToHtml(md) {
+async function markdownToHtml(md, SITE_BASE) {
   // 簡単なmarkdown変換（本格的にはmarkdown.jsを使用）
   // 見出し、リスト、強調、画像など基本的なもの
   let html = escapeHTML(md);
@@ -147,7 +147,9 @@ async function markdownToHtml(md) {
 
   // 画像: ![alt](src)
   html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (m, alt, src) => {
-    return `<img src="${escapeAttr(src)}" alt="${escapeAttr(alt)}" class="detail-img">`;
+    const fixed = (/^https?:\/\//.test(src) || src.startsWith(SITE_BASE)) ? src
+                : (src.startsWith("/") ? SITE_BASE + src : src);
+    return `<img src="${escapeAttr(fixed)}" alt="${escapeAttr(alt)}" class="detail-img">`;
   });
 
   // リンク: [text](url)
