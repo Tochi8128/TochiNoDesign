@@ -7,6 +7,10 @@ const trackpad = document.querySelector("#trackpad"); // トラックパッド�
 const ANCHOR_X = 64.8935 / 935.8223;
 const ANCHOR_Y = 114.8562 / 759.2879;
 
+// 追加：画面枠（SVGの中のパス）と、iframe
+const insideScreen = document.querySelector("#PCimage .inside-screen");
+const insideFrame = document.querySelector(".laptop-screen iframe");
+
 let lastNorm = null;     // {nx, ny}
 let lastAt = 0;
 let overlayOpen = false;
@@ -58,8 +62,10 @@ function render() {
   const h = indicator.offsetHeight || 1;
 
   // ★ここで baseRect を引く（親基準にする）
-  const left = (x - baseRect.left) - w * ANCHOR_X;
-  const top  = (y - baseRect.top)  - h * ANCHOR_Y;
+  // const left = (x - baseRect.left) - w * ANCHOR_X;
+  // const top  = (y - baseRect.top)  - h * ANCHOR_Y;
+  const left = x - w * ANCHOR_X;
+  const top  = y - h * ANCHOR_Y;
 
   indicator.style.left = `${left}px`;
   indicator.style.top  = `${top}px`;
@@ -69,13 +75,29 @@ function render() {
 
 ensureIndicator();
 
-// inside.html から受信
 window.addEventListener("message", (e) => {
   const d = e.data;
   if (!d || d.source !== "inside") return;
 
-  if (d.type === "CURSOR_NORM") {
-    lastNorm = { nx: d.nx, ny: d.ny };
+  // ★追加：insideから「iframe内座標」が来たら、親でnx/nyに変換する
+  if (d.type === "CURSOR_POS") {
+    if (!insideScreen || !insideFrame) return;
+
+    const screenRect = insideScreen.getBoundingClientRect();
+    const frameRect  = insideFrame.getBoundingClientRect();
+
+    // insideの clientX/Y を、親の画面座標に変換
+    const gx = frameRect.left + d.x;
+    const gy = frameRect.top  + d.y;
+
+    // 画面枠（inside-screen）基準で正規化
+    const nx = (gx - screenRect.left) / screenRect.width;
+    const ny = (gy - screenRect.top)  / screenRect.height;
+
+    lastNorm = {
+      nx: Math.min(1, Math.max(0, nx)),
+      ny: Math.min(1, Math.max(0, ny)),
+    };
     lastAt = performance.now();
     render();
     return;
