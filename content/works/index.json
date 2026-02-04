@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-02-04T04:59:29.429Z",
+  "works": [
+    {
+      "id": "001_vocaloid-kohakulabo2025-HP",
+      "title": "ボカロ紅白ラボ夏の陣2025　HP",
+      "category": "WebDesign",
+      "year": 2025,
+      "featured": false,
+      "featuredOrder": 9999,
+      "thumbnail": "./uploads/works/001_vocaloid-kohakulabo2025-HP/thumb.png",
+      "hero": "",
+      "url": ""
+    },
+    {
+      "id": "002_vocaloid-kohaku2026-HP",
+      "title": "ボカロ紅白歌合戦2025　HP",
+      "category": "WebDesign",
+      "year": 2025,
+      "featured": false,
+      "featuredOrder": 9999,
+      "thumbnail": "./uploads/works/002_vocaloid-kohaku2025-HP/thumb.png",
+      "hero": "",
+      "url": ""
+    },
+    {
+      "id": "003_dualpha",
+      "title": "DUALPHA",
+      "category": "Typography / Font",
+      "year": 2026,
+      "featured": true,
+      "featuredOrder": 1,
+      "thumbnail": "./uploads/works/003_dualpha/thumb.png",
+      "hero": "",
+      "url": ""
+    },
+    {
+      "id": "test",
+      "title": "test",
+      "category": "test",
+      "year": 2025,
+      "featured": false,
+      "featuredOrder": "",
+      "thumbnail": "/TochiNoDesign/uploads/works/作字004_おでん.png",
+      "hero": "",
+      "url": ""
+    }
+  ]
+}
