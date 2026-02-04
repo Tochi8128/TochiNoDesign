@@ -426,32 +426,8 @@ body.is-contact #contact-phone {
   background: transparent;
 }
 
-/* === mobile/tablet fallback === */
-.fallback{
-  display: none;
-  min-height: 100svh;
-  padding: 56px 20px;
-}
-
-.fallback__title{
-  font-size: 32px;
-  line-height: 1.15;
-  margin: 0 0 18px;
-}
-
-.fallback__lead{
-  margin: 0 0 28px;
-  font-size: 16px;
-  opacity: 0.8;
-}
-
-.fallback__links{
-  margin: 0 0 14px;
-  font-size: 16px;
-}
-
-.fallback__link{
-  text-decoration: underline;
+.fallback iframe {
+  width: 100%;
 }
 
 /* ここが切替の本体（しきい値はお好みで） */
@@ -470,6 +446,7 @@ body.is-contact #contact-phone {
   /* 代替表示をON */
   .fallback{
     display: block;
+    width: 100%;
   }
 }
 
