@@ -426,6 +426,10 @@ body.is-contact #contact-phone {
   background: transparent;
 }
 
+.fallback {
+  display: none;
+}
+
 .fallback iframe {
   width: 100%;
 }
