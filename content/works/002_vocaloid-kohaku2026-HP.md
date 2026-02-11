@@ -5,10 +5,10 @@ year: 2025
 thumbnail: ./uploads/works/002_vocaloid-kohaku2025-HP/thumb.png
 featured: false
 ---
-webデザインを担当しました。
-<https://vocakouhaku.com/2025/>
+webデザインを担当しました。\
+ボカロ紅白歌合戦2025[](https://vocakouhaku.com/2025/)
 
-Producer: Taaachan*\[ (X)](https://x.com/T444CH4N*)
+Producer: Taaachan [(X)](https://x.com/T444CH4N_)
 Main Visual Artist: MAiCO[ (X)](https://x.com/YMDsaikyou_2021)
 Logo Designer: おて[ (X)](https://x.com/RingO_1460)
 LP Coder: あかい[ (X)](https://x.com/4Kai4k)
