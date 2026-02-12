@@ -5,19 +5,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box; 
+  scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
 *::-webkit-scrollbar {
-  width: 12px; /* 横幅 */
-}
-
-*::-webkit-scrollbar-thumb {
-  background: #276976; /* ハンドルの色 */
-}
-
-*::-webkit-scrollbar-track {
-  background: #DAEFEF; /* 背景色 */
+  display: none;
 }
 
 body {
