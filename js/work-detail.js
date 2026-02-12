@@ -125,40 +125,46 @@ function closeDetail() {
 }
 
 async function markdownToHtml(md, SITE_BASE) {
-  // 簡単なmarkdown変換（本格的にはmarkdown.jsを使用）
-  // 見出し、リスト、強調、画像など基本的なもの
-  let html = escapeHTML(md);
+  let src = String(md ?? "");
 
-  // 段落を複数の改行で分割
-  const paragraphs = html.split(/\n\n+/);
-  html = paragraphs
-    .map(para => {
-      // 各段落内の単一の改行を<br>に変換
-      return '<p>' + para.replace(/\n/g, '<br>') + '</p>';
-    })
-    .join('');
+  // 1) Markdownの「行末 \」(ハード改行) を消す（改行自体は残す）
+  src = src.replace(/\\\s*\n/g, "\n");
 
-  // 画像: ![alt](src)
-  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (m, alt, src) => {
-    const fixed = (/^https?:\/\//.test(src) || src.startsWith(SITE_BASE)) ? src
-                : (src.startsWith("/") ? SITE_BASE + src : src);
+  // 2) まずHTMLエスケープ（ここから先は安全な置換だけでHTMLを作る）
+  let html = escapeHTML(src);
+
+  // 3) 画像: ![alt](src)
+  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, alt, src) => {
+    const fixed =
+      /^https?:\/\//.test(src) || src.startsWith(SITE_BASE)
+        ? src
+        : src.startsWith("/")
+          ? SITE_BASE + src
+          : SITE_BASE + "/" + src;
     return `<img src="${escapeAttr(fixed)}" alt="${escapeAttr(alt)}" class="detail-img">`;
   });
 
-  // リンク: [text](url)
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, text, url) => {
-    return `<a href="${escapeAttr(url)}" target="_blank" rel="noopener">${escapeHTML(text)}</a>`;
+  // 4) リンク: [text](url) ※textが空でもOKにする（*）
+  html = html.replace(/\[([^\]]*)\]\(([^)]+)\)/g, (_, text, url) => {
+    const label = (text && text.trim()) ? text : url; // 空ならURLを表示名に
+    return `<a href="${escapeAttr(url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(label)}</a>`;
   });
 
-  // 強調: **text** → <strong>
-  html = html.replace(/\*\*([^*]+)\*\*/g, (m, text) => {
+  // 5) 強調: **text**
+  html = html.replace(/\*\*([^*]+)\*\*/g, (_, text) => {
     return `<strong>${escapeHTML(text)}</strong>`;
   });
 
-  // イタリック: *text* → <em>（_text_は使わない）
-  html = html.replace(/\*([^*]+)\*/g, (m, text) => {
+  // 6) イタリック: *text*
+  html = html.replace(/\*([^*]+)\*/g, (_, text) => {
     return `<em>${escapeHTML(text)}</em>`;
   });
+
+  // 7) 段落化（最後にやるのが重要）
+  const paragraphs = html.split(/\n{2,}/);
+  html = paragraphs
+    .map((para) => `<p>${para.replace(/\n/g, "<br>")}</p>`)
+    .join("");
 
   return html;
 }
